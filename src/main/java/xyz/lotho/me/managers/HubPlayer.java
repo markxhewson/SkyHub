@@ -3,6 +3,7 @@ package xyz.lotho.me.managers;
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
 import org.bukkit.Color;
+import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import xyz.lotho.me.SkyHub;
@@ -89,6 +90,8 @@ public class HubPlayer {
         setPlayerArmor(player);
         setPlayerItems(player);
         sendConnectMessage(player);
+
+        player.setGameMode(GameMode.ADVENTURE);
     }
 
     public void sendConnectMessage(Player player) {

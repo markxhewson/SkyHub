@@ -50,5 +50,6 @@ public final class SkyHub extends JavaPlugin {
         pluginManager.registerEvents(new handleHubInteractions(this), this);
         pluginManager.registerEvents(new handleBlockBreaking(this), this);
         pluginManager.registerEvents(new handleBlockedCommands(this), this);
+        pluginManager.registerEvents(new handleDamage(this), this);
     }
 }
