@@ -22,6 +22,11 @@ public class SetVoidLimit implements CommandExecutor {
 
         Player player = (Player) sender;
 
+        if (!player.hasPermission(this.instance.config.getString("utils.permission"))) {
+            player.sendMessage(Chat.colorize(this.instance.config.getString("utils.noPerm")));
+            return false;
+        }
+
         if (args.length == 0) {
             player.sendMessage(Chat.colorize("&cUsage: /setvoidlimit <Y: int>"));
             return false;

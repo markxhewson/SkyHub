@@ -20,6 +20,8 @@ public class Item {
         meta.setDisplayName(Chat.colorize(displayName));
         meta.setLore(Arrays.asList(lore));
 
+        meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+
         item.setItemMeta(meta);
         return item;
     }
@@ -32,6 +34,8 @@ public class Item {
 
         meta.setDisplayName(Chat.colorize(displayName));
         meta.setLore(Arrays.asList(lore));
+
+        meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 
         item.setItemMeta(meta);
         return item;

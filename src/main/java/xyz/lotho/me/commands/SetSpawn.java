@@ -21,6 +21,11 @@ public class SetSpawn implements CommandExecutor {
 
         Player player = (Player) sender;
 
+        if (!player.hasPermission(this.instance.config.getString("utils.permission"))) {
+            player.sendMessage(Chat.colorize(this.instance.config.getString("utils.noPerm")));
+            return false;
+        }
+
         this.instance.config.set("spawnpoint.world", player.getWorld().getName());
         this.instance.config.set("spawnpoint.x", player.getLocation().getX());
         this.instance.config.set("spawnpoint.y", player.getLocation().getY());
