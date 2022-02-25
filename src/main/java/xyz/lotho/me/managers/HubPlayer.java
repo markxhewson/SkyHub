@@ -74,7 +74,7 @@ public class HubPlayer {
             exception.printStackTrace();
         }
 
-        this.instance.getServer().sendPluginMessage(this.instance, "BungeeCord", byteArrayOutputStream.toByteArray());
+        this.player.sendPluginMessage(this.instance, "BungeeCord", byteArrayOutputStream.toByteArray());
     }
 
     public void setPlayerItems(Player player) {
@@ -87,6 +87,7 @@ public class HubPlayer {
 
     public void setupHubPlayer(Player player) {
         setPlayerArmor(player);
+        setPlayerItems(player);
         sendConnectMessage(player);
     }
 

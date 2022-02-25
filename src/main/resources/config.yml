@@ -12,6 +12,12 @@ spawnpoint:
 
 voidLimit: 50
 
+blockedCommands:
+  - 'pl'
+  - 'plugins'
+  - '?'
+  - 'icanhasbukkit'
+
 connectMessage:
   - ""
   - "   &c&lSkyCloud &e2.0"
