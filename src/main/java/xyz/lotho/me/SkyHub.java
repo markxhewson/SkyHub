@@ -6,9 +6,10 @@ import org.bukkit.plugin.java.JavaPlugin;
 import xyz.lotho.me.commands.SetSpawn;
 import xyz.lotho.me.commands.SetVoidLimit;
 import xyz.lotho.me.handlers.handleConnections;
-import xyz.lotho.me.handlers.handleHidingPlayers;
+import xyz.lotho.me.handlers.handleHubInteractions;
 import xyz.lotho.me.handlers.handleInventoryMovement;
 import xyz.lotho.me.handlers.handleVoid;
+import xyz.lotho.me.interfaces.ServerSelectMenu;
 import xyz.lotho.me.managers.HubManager;
 import xyz.lotho.me.utils.Config;
 
@@ -18,6 +19,8 @@ public final class SkyHub extends JavaPlugin {
     public YamlConfiguration config = configManager.getConfig();
 
     public HubManager hubManager = new HubManager(this);
+
+    public ServerSelectMenu serverSelectMenu = new ServerSelectMenu(this);
 
     PluginManager pluginManager;
 
@@ -43,6 +46,6 @@ public final class SkyHub extends JavaPlugin {
         pluginManager.registerEvents(new handleVoid(this), this);
         pluginManager.registerEvents(new handleConnections(this), this);
         pluginManager.registerEvents(new handleInventoryMovement(this), this);
-        pluginManager.registerEvents(new handleHidingPlayers(this), this);
+        pluginManager.registerEvents(new handleHubInteractions(this), this);
     }
 }

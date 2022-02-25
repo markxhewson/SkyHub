@@ -10,11 +10,11 @@ import org.bukkit.inventory.ItemStack;
 import xyz.lotho.me.SkyHub;
 import xyz.lotho.me.managers.HubPlayer;
 
-public class handleHidingPlayers implements Listener {
+public class handleHubInteractions implements Listener {
 
     SkyHub instance;
 
-    public handleHidingPlayers(SkyHub instance) {
+    public handleHubInteractions(SkyHub instance) {
         this.instance = instance;
     }
 
@@ -23,12 +23,16 @@ public class handleHidingPlayers implements Listener {
         Player player = event.getPlayer();
         HubPlayer hubPlayer = this.instance.hubManager.getHubPlayer(player);
 
-        ItemStack dye = player.getItemInHand();
+        ItemStack item = player.getItemInHand();
 
-        if (dye.getType() == Material.INK_SACK && ChatColor.stripColor(dye.getItemMeta().getDisplayName()).contains("Hide")) {
+        if (item.getType() == Material.INK_SACK && ChatColor.stripColor(item.getItemMeta().getDisplayName()).contains("Hide")) {
             hubPlayer.hidePlayers();
-        } else if (dye.getType() == Material.INK_SACK && ChatColor.stripColor(dye.getItemMeta().getDisplayName()).contains("Show")) {
+        } else if (item.getType() == Material.INK_SACK && ChatColor.stripColor(item.getItemMeta().getDisplayName()).contains("Show")) {
             hubPlayer.showPlayers();
+        }
+
+        if (item.getType() == Material.COMPASS) {
+            this.instance.serverSelectMenu.open(player);
         }
     }
 }

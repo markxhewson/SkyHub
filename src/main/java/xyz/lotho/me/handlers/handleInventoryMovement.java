@@ -1,5 +1,6 @@
 package xyz.lotho.me.handlers;
 
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -21,5 +22,10 @@ public class handleInventoryMovement implements Listener {
         Inventory inventory = event.getInventory();
 
         if (inventory.getType() == InventoryType.CRAFTING || event.getSlotType() == InventoryType.SlotType.ARMOR) event.setCancelled(true);
+
+        if (this.instance.serverSelectMenu.getName().equals(inventory.getName())) {
+            this.instance.serverSelectMenu.handleClick((Player) event.getWhoClicked(), event.getCurrentItem(), event.getSlot());
+            event.setCancelled(true);
+        }
     }
 }
