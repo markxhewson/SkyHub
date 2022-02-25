@@ -1,0 +1,20 @@
+spawnpoint:
+  world: world
+  x: 0
+  y: 85
+  z: 0
+  yaw: 0
+  pitch: 0
+
+voidLimit: 50
+
+connectMessage:
+  - ""
+  - "   &c&lSkyCloud &e2.0"
+  - "   &7Welcome back! Enjoy your stay."
+  - ""
+  - "   &7Click on your compass to navigate across our network!"
+  - ""
+  - "   &dDiscord: &fdiscord.skycloud.gg"
+  - "   &bStore: &fstore.skycloud.gg"
+  - ""
