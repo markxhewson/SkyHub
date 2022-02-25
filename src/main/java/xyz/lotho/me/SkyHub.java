@@ -5,10 +5,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import xyz.lotho.me.commands.SetSpawn;
 import xyz.lotho.me.commands.SetVoidLimit;
-import xyz.lotho.me.handlers.handleConnections;
-import xyz.lotho.me.handlers.handleHubInteractions;
-import xyz.lotho.me.handlers.handleInventoryMovement;
-import xyz.lotho.me.handlers.handleVoid;
+import xyz.lotho.me.handlers.*;
 import xyz.lotho.me.interfaces.ServerSelectMenu;
 import xyz.lotho.me.managers.HubManager;
 import xyz.lotho.me.utils.Config;
@@ -30,11 +27,15 @@ public final class SkyHub extends JavaPlugin {
 
         loadCommands();
         loadListeners();
+
+        this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
     }
 
     @Override
     public void onDisable() {
         super.onDisable();
+
+        this.getServer().getMessenger().unregisterOutgoingPluginChannel(this, "BungeeCord");
     }
 
     public void loadCommands() {
@@ -47,5 +48,6 @@ public final class SkyHub extends JavaPlugin {
         pluginManager.registerEvents(new handleConnections(this), this);
         pluginManager.registerEvents(new handleInventoryMovement(this), this);
         pluginManager.registerEvents(new handleHubInteractions(this), this);
+        pluginManager.registerEvents(new handleBlockBreaking(this), this);
     }
 }

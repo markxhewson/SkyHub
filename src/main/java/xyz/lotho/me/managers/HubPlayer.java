@@ -1,5 +1,7 @@
 package xyz.lotho.me.managers;
 
+import com.google.common.io.ByteArrayDataOutput;
+import com.google.common.io.ByteStreams;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -7,6 +9,9 @@ import xyz.lotho.me.SkyHub;
 import xyz.lotho.me.utils.Chat;
 import xyz.lotho.me.utils.Item;
 
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 public class HubPlayer {
@@ -58,14 +63,31 @@ public class HubPlayer {
         player.getInventory().setBoots(Item.createColouredItem(Material.LEATHER_BOOTS, Color.WHITE, "&cSpace Suit"));
     }
 
+    public void connect(String serverName) {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
+
+        try {
+            dataOutputStream.writeUTF("Connect");
+            dataOutputStream.writeUTF(serverName);
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
+
+        this.instance.getServer().sendPluginMessage(this.instance, "BungeeCord", byteArrayOutputStream.toByteArray());
+    }
+
     public void setPlayerItems(Player player) {
         player.getInventory().clear();
-
-        setPlayerArmor(player);
 
         player.getInventory().setItem(4, Item.createItem(Material.COMPASS, "&c&lServer Selector", Chat.colorize("&7Click to navigate across the network!")));
         player.getInventory().setItem(7, Item.createItem(Material.WATCH, "&d&lHubs", Chat.colorize("&7Click to move to a separate lobby.")));
         player.getInventory().setItem(1, Item.createItemShort(Material.INK_SACK, 10, "&3&lHide Players", Chat.colorize("&7Click to hide players.")));
+    }
+
+    public void setupHubPlayer(Player player) {
+        setPlayerArmor(player);
+        sendConnectMessage(player);
     }
 
     public void sendConnectMessage(Player player) {
