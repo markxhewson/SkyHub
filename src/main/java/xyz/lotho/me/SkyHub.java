@@ -1,8 +1,10 @@
 package xyz.lotho.me;
 
+import org.bukkit.Difficulty;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import xyz.lotho.me.commands.AdminBypass;
 import xyz.lotho.me.commands.SetSpawn;
 import xyz.lotho.me.commands.SetVoidLimit;
 import xyz.lotho.me.handlers.*;
@@ -28,6 +30,8 @@ public final class SkyHub extends JavaPlugin {
         loadCommands();
         loadListeners();
 
+        this.getServer().getWorlds().forEach((world) -> world.setDifficulty(Difficulty.PEACEFUL));
+
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
     }
 
@@ -41,15 +45,17 @@ public final class SkyHub extends JavaPlugin {
     public void loadCommands() {
         this.getCommand("setspawn").setExecutor(new SetSpawn(this));
         this.getCommand("setvoidlimit").setExecutor(new SetVoidLimit(this));
+        this.getCommand("adminbypass").setExecutor(new AdminBypass(this));
     }
 
     public void loadListeners() {
-        pluginManager.registerEvents(new handleVoid(this), this);
+        pluginManager.registerEvents(new handlePlayerMovement(this), this);
         pluginManager.registerEvents(new handleConnections(this), this);
         pluginManager.registerEvents(new handleInventoryMovement(this), this);
         pluginManager.registerEvents(new handleHubInteractions(this), this);
-        pluginManager.registerEvents(new handleBlockBreaking(this), this);
+        pluginManager.registerEvents(new handleBlocks(this), this);
         pluginManager.registerEvents(new handleBlockedCommands(this), this);
         pluginManager.registerEvents(new handleDamage(this), this);
+        pluginManager.registerEvents(new handleItems(this), this);
     }
 }

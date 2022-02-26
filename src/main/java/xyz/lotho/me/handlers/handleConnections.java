@@ -32,7 +32,7 @@ public class handleConnections implements Listener {
 
         player.teleport(this.instance.hubManager.getHubSpawnLocation());
 
-        hubPlayer.setupHubPlayer(player);
+        hubPlayer.setup(player);
     }
 
     @EventHandler

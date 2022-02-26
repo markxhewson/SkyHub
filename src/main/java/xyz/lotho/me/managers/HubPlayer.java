@@ -1,7 +1,5 @@
 package xyz.lotho.me.managers;
 
-import com.google.common.io.ByteArrayDataOutput;
-import com.google.common.io.ByteStreams;
 import org.bukkit.Color;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
@@ -57,7 +55,7 @@ public class HubPlayer {
         player.getInventory().setItem(1, Item.createItemShort(Material.INK_SACK, 10, "&3&lHide Players", Chat.colorize("&7Click to hide players.")));
     }
 
-    public void setPlayerArmor(Player player) {
+    public void setArmor(Player player) {
         player.getInventory().setHelmet(Item.createItem(Material.GLASS, "&cSpace Helmet"));
         player.getInventory().setChestplate(Item.createColouredItem(Material.LEATHER_CHESTPLATE, Color.WHITE, "&cSpace Suit"));
         player.getInventory().setLeggings(Item.createColouredItem(Material.LEATHER_LEGGINGS, Color.WHITE, "&cSpace Suit"));
@@ -78,7 +76,11 @@ public class HubPlayer {
         this.player.sendPluginMessage(this.instance, "BungeeCord", byteArrayOutputStream.toByteArray());
     }
 
-    public void setPlayerItems(Player player) {
+    public boolean adminBypassEnabled() {
+        return this.instance.hubManager.getAdminBypas().contains(this);
+    }
+
+    public void setItems(Player player) {
         player.getInventory().clear();
 
         player.getInventory().setItem(4, Item.createItem(Material.COMPASS, "&c&lServer Selector", Chat.colorize("&7Click to navigate across the network!")));
@@ -86,12 +88,15 @@ public class HubPlayer {
         player.getInventory().setItem(1, Item.createItemShort(Material.INK_SACK, 10, "&3&lHide Players", Chat.colorize("&7Click to hide players.")));
     }
 
-    public void setupHubPlayer(Player player) {
-        setPlayerArmor(player);
-        setPlayerItems(player);
+    public void setup(Player player) {
+        setArmor(player);
+        setItems(player);
         sendConnectMessage(player);
 
+        player.getInventory().setItem(0, Item.createItem(Material.ENDER_PEARL, "Leo's Ass"));
+
         player.setGameMode(GameMode.ADVENTURE);
+        player.setWalkSpeed((float) this.instance.config.getDouble("walkSpeed"));
     }
 
     public void sendConnectMessage(Player player) {

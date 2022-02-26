@@ -12,6 +12,9 @@ public class HubManager {
 
     SkyHub instance;
     ArrayList<HubPlayer> hubPlayers = new ArrayList<>();
+    ArrayList<HubPlayer> adminBypass = new ArrayList<>();
+
+    public ArrayList<Player> riders = new ArrayList<>();
 
     public HubManager(SkyHub instance) {
         this.instance = instance;
@@ -28,12 +31,24 @@ public class HubManager {
         );
     }
 
+    public void addAdminBypass(HubPlayer hubPlayer) {
+        this.adminBypass.add(hubPlayer);
+    }
+
+    public void removeAdminBypass(HubPlayer hubPlayer) {
+        this.adminBypass.remove(hubPlayer);
+    }
+
     public void addHubPlayer(Player player) {
         this.hubPlayers.add(new HubPlayer(this.instance, player));
     }
 
     public void removeHubPlayer(HubPlayer hubPlayer) {
         this.hubPlayers.remove(hubPlayer);
+    }
+
+    public ArrayList<HubPlayer> getAdminBypas() {
+        return this.adminBypass;
     }
 
     public ArrayList<HubPlayer> getHubPlayers() {

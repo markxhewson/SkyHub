@@ -17,5 +17,4 @@ public class handleDamage implements Listener {
     public void onDamage(EntityDamageEvent event) {
         event.setCancelled(true);
     }
-
 }

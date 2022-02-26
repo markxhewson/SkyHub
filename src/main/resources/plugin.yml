@@ -8,3 +8,5 @@ description: An advanced hub plugin.
 commands:
   setspawn:
   setvoidlimit:
+  adminbypass:
+    aliases: [ab]
