@@ -24,11 +24,12 @@ public class handlePlayerMovement implements Listener {
             player.teleport(this.instance.hubManager.getHubSpawnLocation());
         }
 
-        if (this.instance.hubManager.riders.contains(player))
+        if (this.instance.hubManager.pearlRiders.contains(player)) {
             if (player.getLocation().subtract(0.0D, 0.5D, 0.0D).getBlock().getType() != Material.AIR) {
-                this.instance.hubManager.riders.remove(player);
+                this.instance.hubManager.pearlRiders.remove(player);
                 player.teleport(player.getLocation().add(0.0D, 2.5D, 0.0D));
             }
+        }
     }
 
     @EventHandler

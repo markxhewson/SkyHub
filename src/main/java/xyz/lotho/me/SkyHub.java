@@ -7,6 +7,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import xyz.lotho.me.commands.AdminBypass;
 import xyz.lotho.me.commands.SetSpawn;
 import xyz.lotho.me.commands.SetVoidLimit;
+import xyz.lotho.me.commands.Spawn;
 import xyz.lotho.me.handlers.*;
 import xyz.lotho.me.interfaces.ServerSelectMenu;
 import xyz.lotho.me.managers.HubManager;
@@ -46,6 +47,7 @@ public final class SkyHub extends JavaPlugin {
         this.getCommand("setspawn").setExecutor(new SetSpawn(this));
         this.getCommand("setvoidlimit").setExecutor(new SetVoidLimit(this));
         this.getCommand("adminbypass").setExecutor(new AdminBypass(this));
+        this.getCommand("spawn").setExecutor(new Spawn(this));
     }
 
     public void loadListeners() {

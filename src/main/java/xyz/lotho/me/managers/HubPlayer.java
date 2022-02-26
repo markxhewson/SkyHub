@@ -42,7 +42,7 @@ public class HubPlayer {
             this.player.hidePlayer(online);
         });
 
-        player.getInventory().setItem(1, Item.createItemShort(Material.INK_SACK, 8, "&3&lShow Players", Chat.colorize("&7Click to hide players.")));
+        player.getInventory().setItem(3, Item.createItemShort(Material.INK_SACK, 8, "&3&lShow Players", Chat.colorize("&7Click to hide players.")));
     }
 
     public void showPlayers() {
@@ -52,7 +52,7 @@ public class HubPlayer {
             this.player.showPlayer(online);
         });
 
-        player.getInventory().setItem(1, Item.createItemShort(Material.INK_SACK, 10, "&3&lHide Players", Chat.colorize("&7Click to hide players.")));
+        player.getInventory().setItem(3, Item.createItemShort(Material.INK_SACK, 10, "&3&lHide Players", Chat.colorize("&7Click to hide players.")));
     }
 
     public void setArmor(Player player) {
@@ -83,17 +83,16 @@ public class HubPlayer {
     public void setItems(Player player) {
         player.getInventory().clear();
 
-        player.getInventory().setItem(4, Item.createItem(Material.COMPASS, "&c&lServer Selector", Chat.colorize("&7Click to navigate across the network!")));
+        player.getInventory().setItem(1, Item.createItem(Material.ENDER_PEARL, "&5&lEnderbutt", Chat.colorize("&7Click to ride the enderbutt!")));
+        player.getInventory().setItem(3, Item.createItemShort(Material.INK_SACK, 10, "&3&lHide Players", Chat.colorize("&7Click to hide players.")));
+        player.getInventory().setItem(5, Item.createItem(Material.COMPASS, "&c&lServer Selector", Chat.colorize("&7Click to navigate across the network!")));
         player.getInventory().setItem(7, Item.createItem(Material.WATCH, "&d&lHubs", Chat.colorize("&7Click to move to a separate lobby.")));
-        player.getInventory().setItem(1, Item.createItemShort(Material.INK_SACK, 10, "&3&lHide Players", Chat.colorize("&7Click to hide players.")));
     }
 
     public void setup(Player player) {
         setArmor(player);
         setItems(player);
         sendConnectMessage(player);
-
-        player.getInventory().setItem(0, Item.createItem(Material.ENDER_PEARL, "Leo's Ass"));
 
         player.setGameMode(GameMode.ADVENTURE);
         player.setWalkSpeed((float) this.instance.config.getDouble("walkSpeed"));

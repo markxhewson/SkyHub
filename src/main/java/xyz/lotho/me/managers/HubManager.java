@@ -14,7 +14,8 @@ public class HubManager {
     ArrayList<HubPlayer> hubPlayers = new ArrayList<>();
     ArrayList<HubPlayer> adminBypass = new ArrayList<>();
 
-    public ArrayList<Player> riders = new ArrayList<>();
+    public HashMap<Player, Long> pearlCooldown = new HashMap<>();
+    public ArrayList<Player> pearlRiders = new ArrayList<>();
 
     public HubManager(SkyHub instance) {
         this.instance = instance;

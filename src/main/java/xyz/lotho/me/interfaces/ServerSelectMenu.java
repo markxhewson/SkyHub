@@ -43,7 +43,7 @@ public class ServerSelectMenu extends Menu {
         );
 
         super.getInventory().setItem(15, Item.createItem(
-                Material.MYCEL,
+                Material.BARRIER,
                 "&5&lMystery",
                 "",
                 Chat.colorize("&7(Click to connect to Mystery)"))
@@ -62,7 +62,7 @@ public class ServerSelectMenu extends Menu {
                 hubPlayer.connect("atlas-1");
                 break;
 
-            case MYCEL:
+            case BARRIER:
                 break;
 
             default:

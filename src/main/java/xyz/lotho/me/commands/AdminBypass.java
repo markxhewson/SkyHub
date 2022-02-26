@@ -16,7 +16,6 @@ public class AdminBypass implements CommandExecutor {
         this.instance = instance;
     }
 
-
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] strings) {
         if (!(sender instanceof Player)) return false;
