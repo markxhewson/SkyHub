@@ -49,16 +49,18 @@ public class HubBoard {
         this.handleTeamValidation(rank, "&fRank: &cAdmin");
         objective.getScore(ChatColor.BLUE + "").setScore(13);
 
-        Score serversBar = objective.getScore(Chat.colorize("&d&lRealms"));
-        serversBar.setScore(11);
+        Score spacer = objective.getScore(Chat.colorize(" "));
+        spacer.setScore(11);
 
-        this.instance.hubManager.getNetworkCount();
+        Score serversBar = objective.getScore(Chat.colorize("&d&lRealms"));
+        serversBar.setScore(10);
+
 
         this.instance.getServer().getScheduler().runTaskLaterAsynchronously(this.instance, () -> {
             Team networkCount = scoreboard.registerNewTeam("networkCount");
             networkCount.addEntry(ChatColor.GOLD + "");
             this.handleTeamValidation(networkCount, "&fGlobal: &a" + this.instance.hubManager.data.get("networkCount"));
-            objective.getScore(ChatColor.GOLD + "").setScore(10);
+            objective.getScore(ChatColor.GOLD + "").setScore(9);
         }, 20);
 
         Score bottomBar = objective.getScore(Chat.colorize("&7&m------------------- "));

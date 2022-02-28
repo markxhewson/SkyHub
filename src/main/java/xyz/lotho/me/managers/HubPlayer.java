@@ -4,7 +4,6 @@ import org.bukkit.Color;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.scoreboard.Scoreboard;
 import xyz.lotho.me.SkyHub;
 import xyz.lotho.me.scoreboards.HubBoard;
 import xyz.lotho.me.utils.Chat;
@@ -83,7 +82,7 @@ public class HubPlayer {
     }
 
     public boolean adminBypassEnabled() {
-        return this.instance.hubManager.getAdminBypas().contains(this);
+        return this.instance.hubManager.getAdminBypass().contains(this);
     }
 
     public void setItems(Player player) {

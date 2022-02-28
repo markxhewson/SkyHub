@@ -4,8 +4,6 @@ import org.bukkit.Difficulty;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scoreboard.Scoreboard;
-import xyz.lotho.me.bungee.MessagingChannel;
 import xyz.lotho.me.commands.AdminBypass;
 import xyz.lotho.me.commands.SetSpawn;
 import xyz.lotho.me.commands.SetVoidLimit;
@@ -29,15 +27,14 @@ public final class SkyHub extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
+
         pluginManager = this.getServer().getPluginManager();
 
         loadCommands();
         loadListeners();
 
         this.getServer().getWorlds().forEach((world) -> world.setDifficulty(Difficulty.PEACEFUL));
-
-        this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
-        this.getServer().getMessenger().registerIncomingPluginChannel(this, "BungeeCord", new MessagingChannel(this));
     }
 
     @Override
@@ -45,7 +42,6 @@ public final class SkyHub extends JavaPlugin {
         super.onDisable();
 
         this.getServer().getMessenger().unregisterOutgoingPluginChannel(this, "BungeeCord");
-        this.getServer().getMessenger().unregisterIncomingPluginChannel(this, "BungeeCord", new MessagingChannel(this));
     }
 
     public void loadCommands() {
