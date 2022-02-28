@@ -4,7 +4,9 @@ import org.bukkit.Color;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.scoreboard.Scoreboard;
 import xyz.lotho.me.SkyHub;
+import xyz.lotho.me.scoreboards.HubBoard;
 import xyz.lotho.me.utils.Chat;
 import xyz.lotho.me.utils.Item;
 
@@ -53,6 +55,10 @@ public class HubPlayer {
         });
 
         player.getInventory().setItem(3, Item.createItemShort(Material.INK_SACK, 10, "&3&lHide Players", Chat.colorize("&7Click to hide players.")));
+    }
+
+    public void setScoreboard() {
+        this.getPlayer().setScoreboard(new HubBoard(this.instance, this).create());
     }
 
     public void setArmor(Player player) {

@@ -30,6 +30,7 @@ public class handleConnections implements Listener {
         this.instance.hubManager.addHubPlayer(player);
         HubPlayer hubPlayer = this.instance.hubManager.getHubPlayer(player);
 
+        hubPlayer.setScoreboard();
         player.teleport(this.instance.hubManager.getHubSpawnLocation());
 
         hubPlayer.setup(player);

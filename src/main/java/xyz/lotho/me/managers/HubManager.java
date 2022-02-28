@@ -4,6 +4,9 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import xyz.lotho.me.SkyHub;
 
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
@@ -16,6 +19,8 @@ public class HubManager {
 
     public HashMap<Player, Long> pearlCooldown = new HashMap<>();
     public ArrayList<Player> pearlRiders = new ArrayList<>();
+
+    public HashMap<String, Integer> data = new HashMap<>();
 
     public HubManager(SkyHub instance) {
         this.instance = instance;
@@ -67,5 +72,19 @@ public class HubManager {
         });
 
         return hashMap.get("result");
+    }
+
+    public void getNetworkCount() {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
+
+        try {
+            dataOutputStream.writeUTF("PlayerCount");
+            dataOutputStream.writeUTF("ALL");
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
+
+        this.instance.getServer().sendPluginMessage(this.instance, "BungeeCord", byteArrayOutputStream.toByteArray());
     }
 }
