@@ -55,14 +55,27 @@ public class ServerSelectMenu extends Menu {
 
         switch(clickedItem.getType()) {
             case GRASS:
-                hubPlayer.connect("orbit-1");
+                if (!this.instance.queueManager.isPlayerInQueue("orbit-1", hubPlayer)) {
+                    hubPlayer.joinQueue("orbit-1");
+                    hubPlayer.getPlayer().sendMessage(Chat.colorize("&aYou have successfully joined the queue for this realm!\n &7You will be transferred shortly, please be patient."));
+                    hubPlayer.setQueueScoreboard();
+                } else {
+                    hubPlayer.getPlayer().sendMessage(Chat.colorize("&cYou are already in queue to join this realm!\n &7Please wait patiently for your position to change."));
+                }
                 break;
 
             case DIAMOND_PICKAXE:
-                hubPlayer.connect("atlas-1");
+                if (!this.instance.queueManager.isPlayerInQueue("atlas-1", hubPlayer)) {
+                    hubPlayer.joinQueue("atlas-1");
+                    hubPlayer.getPlayer().sendMessage(Chat.colorize("&aYou have successfully joined the queue for this realm!\n &7You will be transferred shortly, please be patient."));
+                    hubPlayer.setQueueScoreboard();
+                } else {
+                    hubPlayer.getPlayer().sendMessage(Chat.colorize("&cYou are already in queue to join this realm!\n &7Please wait patiently for your position to change."));
+                }
                 break;
 
             case BARRIER:
+                hubPlayer.getPlayer().sendMessage(Chat.colorize("&cThis realm is currently closed."));
                 break;
 
             default:

@@ -1,11 +1,19 @@
 package xyz.lotho.me.scoreboards;
 
+import dev.jcsoftware.jscoreboards.JPerPlayerScoreboard;
+import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.*;
 import xyz.lotho.me.SkyHub;
 import xyz.lotho.me.managers.HubPlayer;
 import xyz.lotho.me.utils.Chat;
+
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import java.util.Arrays;
 
 public class HubBoard {
 
@@ -17,59 +25,25 @@ public class HubBoard {
         this.hubPlayer = hubPlayer;
     }
 
-    private void handleTeamValidation(Team team, String line) {
-        if (line.length() <= 16) {
-            team.setPrefix(Chat.colorize(line));
-            return;
-        }
+    public void create() {
 
-        if (line.length() > 32) {
-            line = line.substring(0, 32);
-        }
+        DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL);
+        String formattedDate = formatter.format(LocalDate.now());
 
-        team.setPrefix(Chat.colorize(line.substring(0, 16)));
-        team.setSuffix(Chat.colorize(line.substring(16)));
-    }
+        JPerPlayerScoreboard scoreboard = new JPerPlayerScoreboard((player) -> "&c&lSkyCloud &e2.0",
+        (player) -> Arrays.asList(
+                "&7&m----------------------",
+                "&7&o" + formattedDate,
+                "",
+                "&d&lRealms &7(0 globally)",
+                "  &6&lOrbit &f[0/400]",
+                "  &c&lAtlas &f[0/400]",
+                "  &5&lMystery &f[0/400]",
+                "",
+                "&7&oskycloud.gg",
+                "&7&m----------------------"
+        ));
 
-    public Scoreboard create() {
-        Scoreboard scoreboard = this.instance.getServer().getScoreboardManager().getNewScoreboard();
-        Objective objective = scoreboard.registerNewObjective("SkyCloud", "dummy");
-        objective.setDisplaySlot(DisplaySlot.SIDEBAR);
-
-        Score topBar = objective.getScore(Chat.colorize("&7&m-------------------"));
-        topBar.setScore(15);
-
-        Team player = scoreboard.registerNewTeam("player");
-        player.addEntry(ChatColor.RED + "");
-        this.handleTeamValidation(player, "&d&l" + this.hubPlayer.getPlayer().getDisplayName());
-        objective.getScore(ChatColor.RED + "").setScore(14);
-
-        Team rank = scoreboard.registerNewTeam("rank");
-        rank.addEntry(ChatColor.BLUE + "");
-        this.handleTeamValidation(rank, "&fRank: &cAdmin");
-        objective.getScore(ChatColor.BLUE + "").setScore(13);
-
-        Score spacer = objective.getScore(Chat.colorize(" "));
-        spacer.setScore(11);
-
-        Score serversBar = objective.getScore(Chat.colorize("&d&lRealms"));
-        serversBar.setScore(10);
-
-
-        this.instance.getServer().getScheduler().runTaskLaterAsynchronously(this.instance, () -> {
-            Team networkCount = scoreboard.registerNewTeam("networkCount");
-            networkCount.addEntry(ChatColor.GOLD + "");
-            this.handleTeamValidation(networkCount, "&fGlobal: &a" + this.instance.hubManager.data.get("networkCount"));
-            objective.getScore(ChatColor.GOLD + "").setScore(9);
-        }, 20);
-
-        Score bottomBar = objective.getScore(Chat.colorize("&7&m------------------- "));
-        bottomBar.setScore(0);
-
-        return scoreboard;
-    }
-
-    public void update() {
-
+        scoreboard.addPlayer(this.hubPlayer.getPlayer());
     }
 }

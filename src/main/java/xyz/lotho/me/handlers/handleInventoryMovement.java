@@ -23,8 +23,12 @@ public class handleInventoryMovement implements Listener {
 
         if (inventory.getType() == InventoryType.CRAFTING || event.getSlotType() == InventoryType.SlotType.ARMOR) event.setCancelled(true);
 
-        if (this.instance.serverSelectMenu.getName().equals(inventory.getName())) {
+        if (this.instance.serverSelectMenu.getName().equals(inventory.getName()) && event.getSlotType() != InventoryType.SlotType.OUTSIDE) {
             this.instance.serverSelectMenu.handleClick((Player) event.getWhoClicked(), event.getCurrentItem(), event.getSlot());
+            event.setCancelled(true);
+        }
+        if (this.instance.hubSelectMenu.getName().equals(inventory.getName()) && event.getSlotType() != InventoryType.SlotType.OUTSIDE) {
+            this.instance.hubSelectMenu.handleClick((Player) event.getWhoClicked(), event.getCurrentItem(), event.getSlot());
             event.setCancelled(true);
         }
     }

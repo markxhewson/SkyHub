@@ -1,23 +1,37 @@
 utils:
   permission: 'skycloud.admin'
   noPerm: "&cI'm sorry, but you do not have permission to perform this command. Please contact the server administrators if you believe that this is in error."
+  thisServer: 'hub-1'
 
 spawnpoint:
   world: world
-  x: 0
-  y: 85
-  z: 0
-  yaw: 0
-  pitch: 0
+  x: -3.145185479807364
+  y: 128.0
+  z: 180.43340167298277
+  yaw: 180.44951
+  pitch: 0.89983815
 
 voidLimit: 50
-walkSpeed: 0.3F
+walkSpeed: 0.3
+
+servers:
+  - orbit-1
+  - atlas-1
+  - mystery-1
+  - hub-1
+  - hub-2
 
 blockedCommands:
   - 'pl'
   - 'plugins'
   - '?'
   - 'icanhasbukkit'
+  - 'bukkit:'
+  - 'about'
+  - 'placeholderapi'
+  - 'papi'
+  - 'spark'
+  - 'tps'
 
 connectMessage:
   - ""

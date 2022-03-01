@@ -33,11 +33,15 @@ public class handleConnections implements Listener {
         hubPlayer.setScoreboard();
         player.teleport(this.instance.hubManager.getHubSpawnLocation());
 
-        hubPlayer.setup(player);
+        hubPlayer.setup();
     }
 
     @EventHandler
     public void onDisconnect(PlayerQuitEvent event) {
+        HubPlayer hubPlayer = this.instance.hubManager.getHubPlayer(event.getPlayer());
+        this.instance.queueManager.removePlayerFromQueues(hubPlayer);
+
+        this.instance.queueManager.getServersQueue().forEach((serverName, players) -> players.forEach(HubPlayer::setQueueScoreboard));
         event.setQuitMessage(null);
     }
 

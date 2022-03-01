@@ -41,6 +41,9 @@ public class handleHubInteractions implements Listener {
         if (item.getType() == Material.COMPASS) {
             this.instance.serverSelectMenu.open(player);
         }
+        if (item.getType() == Material.WATCH) {
+            this.instance.hubSelectMenu.open(player);
+        }
 
         if (player.getItemInHand().getType() == Material.ENDER_PEARL) {
             if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {

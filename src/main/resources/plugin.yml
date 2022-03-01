@@ -9,5 +9,10 @@ commands:
   spawn:
   setspawn:
   setvoidlimit:
+  leavequeue:
+    aliases: [lq]
   adminbypass:
     aliases: [ab]
+
+depend:
+  - PlaceholderAPI
