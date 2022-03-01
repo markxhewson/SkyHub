@@ -31,9 +31,9 @@ public class QueueBoard {
                         "&7&m----------------------",
                         "&7&o" + formattedDate,
                         "",
-                        "&d&lRealms &7(0 globally)",
-                        "  &6&lOrbit &f[0/400]",
-                        "  &c&lAtlas &f[0/400]",
+                        "&d&lRealms &7(" + this.instance.hubManager.serverCounts.getOrDefault("ALL", 0) + " globally)",
+                        "  &6&lOrbit &f[" + this.instance.hubManager.serverCounts.getOrDefault("orbit-1", 0) + "/400]",
+                        "  &c&lAtlas &f[" + this.instance.hubManager.serverCounts.getOrDefault("atlas-1", 0) + "/400]",
                         "  &5&lMystery &f[0/400]",
                         "",
                         "&d&lQueue &7(/leavequeue)",
@@ -45,6 +45,7 @@ public class QueueBoard {
                 ));
 
         scoreboard.addPlayer(this.hubPlayer.getPlayer());
+        this.hubPlayer.setScoreboard(scoreboard);
     }
 
 }

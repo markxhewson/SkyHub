@@ -26,6 +26,8 @@ public class LeaveQueue implements CommandExecutor {
 
         if (this.instance.queueManager.isPlayerInAnyQueue(hubPlayer)) {
             this.instance.queueManager.removePlayerFromQueues(hubPlayer);
+            this.instance.queueManager.getServersQueue().forEach((serverName, players) -> players.forEach(HubPlayer::setQueueScoreboard));
+
             hubPlayer.getPlayer().sendMessage(Chat.colorize("&cYou have successfully left the realm queue!"));
             hubPlayer.setScoreboard();
         } else {

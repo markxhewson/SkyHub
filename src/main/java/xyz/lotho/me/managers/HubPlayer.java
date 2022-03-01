@@ -1,5 +1,6 @@
 package xyz.lotho.me.managers;
 
+import dev.jcsoftware.jscoreboards.JPerPlayerScoreboard;
 import net.luckperms.api.model.user.User;
 import org.bukkit.Color;
 import org.bukkit.GameMode;
@@ -23,12 +24,14 @@ public class HubPlayer {
     Player player;
 
     boolean playersHidden;
+    JPerPlayerScoreboard scoreboard;
 
     public HubPlayer(SkyHub instance, Player player) {
         this.instance = instance;
         this.player = player;
 
         this.playersHidden = false;
+        this.scoreboard = null;
     }
 
     public Player getPlayer() {
@@ -65,6 +68,14 @@ public class HubPlayer {
 
     public void setQueueScoreboard() {
         new QueueBoard(this.instance, this).create();
+    }
+
+    public JPerPlayerScoreboard getScoreboard() {
+        return this.scoreboard;
+    }
+
+    public void setScoreboard(JPerPlayerScoreboard scoreboard) {
+        this.scoreboard = scoreboard;
     }
 
     public void setArmor() {
@@ -137,9 +148,10 @@ public class HubPlayer {
     }
 
     public void setup() {
-        setArmor();
-        setItems();
-        sendConnectMessage();
+        this.setArmor();
+        this.setItems();
+        this.sendConnectMessage();
+        this.setScoreboard();
 
         this.getPlayer().setGameMode(GameMode.ADVENTURE);
         this.getPlayer().setWalkSpeed((float) this.instance.config.getDouble("walkSpeed"));

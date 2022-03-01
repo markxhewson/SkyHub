@@ -26,24 +26,26 @@ public class HubBoard {
     }
 
     public void create() {
-
         DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL);
         String formattedDate = formatter.format(LocalDate.now());
 
+        System.out.println(this.instance.hubManager.serverCounts);
+
         JPerPlayerScoreboard scoreboard = new JPerPlayerScoreboard((player) -> "&c&lSkyCloud &e2.0",
-        (player) -> Arrays.asList(
-                "&7&m----------------------",
-                "&7&o" + formattedDate,
-                "",
-                "&d&lRealms &7(0 globally)",
-                "  &6&lOrbit &f[0/400]",
-                "  &c&lAtlas &f[0/400]",
-                "  &5&lMystery &f[0/400]",
-                "",
-                "&7&oskycloud.gg",
-                "&7&m----------------------"
-        ));
+                (player) -> Arrays.asList(
+                        "&7&m----------------------",
+                        "&7&o" + formattedDate,
+                        "",
+                        "&d&lRealms &7(" + this.instance.hubManager.serverCounts.getOrDefault("ALL", 0) + " globally)",
+                        "  &6&lOrbit &f[" + this.instance.hubManager.serverCounts.getOrDefault("orbit-1", 0) + "/400]",
+                        "  &c&lAtlas &f[" + this.instance.hubManager.serverCounts.getOrDefault("atlas-1", 0) + "/400]",
+                        "  &5&lMystery &f[0/400]",
+                        "",
+                        "&7&oskycloud.gg",
+                        "&7&m----------------------"
+                ));
 
         scoreboard.addPlayer(this.hubPlayer.getPlayer());
+        this.hubPlayer.setScoreboard(scoreboard);
     }
 }

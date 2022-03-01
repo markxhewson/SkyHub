@@ -34,7 +34,7 @@ public class QueueManager {
 
     public void removePlayerFromQueues(HubPlayer hubPlayer) {
         this.getServersQueue().forEach((serverName, players) -> {
-            if (this.isPlayerInQueue(serverName, hubPlayer)) this.getServersQueue().get(serverName).remove(hubPlayer);
+            if (hubPlayer.isInQueue(serverName)) this.getServersQueue().get(serverName).remove(hubPlayer);
         });
     }
 
@@ -42,7 +42,7 @@ public class QueueManager {
         HashMap<String, Boolean> result = new HashMap<>();
 
         this.getServersQueue().forEach((serverName, players) -> {
-            if (this.isPlayerInQueue(serverName, hubPlayer)) result.put("result", true);
+            if (hubPlayer.isInQueue(serverName)) result.put("result", true);
         });
 
         result.putIfAbsent("result", false);

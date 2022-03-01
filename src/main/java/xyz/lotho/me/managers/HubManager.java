@@ -1,5 +1,6 @@
 package xyz.lotho.me.managers;
 
+import com.google.common.collect.Iterables;
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
 import org.bukkit.Location;
@@ -20,6 +21,7 @@ public class HubManager {
     public ArrayList<Player> pearlRiders = new ArrayList<>();
 
     public HashMap<String, Integer> data = new HashMap<>();
+    public HashMap<String, Integer> serverCounts = new HashMap<>();
 
     public HubManager(SkyHub instance) {
         this.instance = instance;
@@ -34,6 +36,15 @@ public class HubManager {
                 this.instance.config.getInt("spawnpoint.yaw"),
                 this.instance.config.getInt("spawnpoint.pitch")
         );
+    }
+
+    public void getServerCount(String serverName) {
+        ByteArrayDataOutput out = ByteStreams.newDataOutput();
+
+        out.writeUTF("PlayerCount");
+        out.writeUTF(serverName);
+
+        this.instance.getServer().sendPluginMessage(this.instance, "BungeeCord", out.toByteArray());
     }
 
     public void addAdminBypass(HubPlayer hubPlayer) {

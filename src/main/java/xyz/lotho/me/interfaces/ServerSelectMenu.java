@@ -55,22 +55,22 @@ public class ServerSelectMenu extends Menu {
 
         switch(clickedItem.getType()) {
             case GRASS:
-                if (!this.instance.queueManager.isPlayerInQueue("orbit-1", hubPlayer)) {
+                if (!this.instance.queueManager.isPlayerInAnyQueue(hubPlayer)) {
                     hubPlayer.joinQueue("orbit-1");
                     hubPlayer.getPlayer().sendMessage(Chat.colorize("&aYou have successfully joined the queue for this realm!\n &7You will be transferred shortly, please be patient."));
                     hubPlayer.setQueueScoreboard();
                 } else {
-                    hubPlayer.getPlayer().sendMessage(Chat.colorize("&cYou are already in queue to join this realm!\n &7Please wait patiently for your position to change."));
+                    hubPlayer.getPlayer().sendMessage(Chat.colorize("&cYou are already in a queue to join a realm!\n &7You can type /leavequeue to remove yourself from the realm queue."));
                 }
                 break;
 
             case DIAMOND_PICKAXE:
-                if (!this.instance.queueManager.isPlayerInQueue("atlas-1", hubPlayer)) {
+                if (!this.instance.queueManager.isPlayerInAnyQueue(hubPlayer)) {
                     hubPlayer.joinQueue("atlas-1");
                     hubPlayer.getPlayer().sendMessage(Chat.colorize("&aYou have successfully joined the queue for this realm!\n &7You will be transferred shortly, please be patient."));
                     hubPlayer.setQueueScoreboard();
                 } else {
-                    hubPlayer.getPlayer().sendMessage(Chat.colorize("&cYou are already in queue to join this realm!\n &7Please wait patiently for your position to change."));
+                    hubPlayer.getPlayer().sendMessage(Chat.colorize("&cYou are already in a queue to join a realm!\n &7You can type /leavequeue to remove yourself from the realm queue."));
                 }
                 break;
 
