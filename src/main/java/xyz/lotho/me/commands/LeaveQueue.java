@@ -24,7 +24,7 @@ public class LeaveQueue implements CommandExecutor {
         Player player = (Player) sender;
         HubPlayer hubPlayer = this.instance.hubManager.getHubPlayer(player);
 
-        if (this.instance.queueManager.isPlayerInAnyQueue(hubPlayer)) {
+        if (hubPlayer.isInAnyQueue()) {
             this.instance.queueManager.removePlayerFromQueues(hubPlayer);
             this.instance.queueManager.getServersQueue().forEach((serverName, players) -> players.forEach(HubPlayer::setQueueScoreboard));
 
