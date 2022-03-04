@@ -1,7 +1,7 @@
 name: SkyHub
 version: '${project.version}'
 main: xyz.lotho.me.SkyHub
-api-version: 1.18
+api-version: 1.8.8
 authors: [ Lotho ]
 description: An advanced hub plugin.
 

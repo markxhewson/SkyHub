@@ -10,6 +10,7 @@ import xyz.lotho.me.managers.HubPlayer;
 import xyz.lotho.me.utils.Chat;
 import xyz.lotho.me.utils.Item;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 public class HubSelectMenu extends Menu {
@@ -30,16 +31,24 @@ public class HubSelectMenu extends Menu {
 
         super.getInventory().setItem(11, Item.createItem(
                 Material.QUARTZ_BLOCK,
-                "&b&lHub-1",
+                "&e&lHub-1",
+                Chat.colorize("&7&m----------------------"),
+                Chat.colorize("&7&oJourney to our first waiting station."),
                 "",
-                Chat.colorize("&7(Click to connect to Hub-1)"))
+                Chat.colorize("&7(Click to connect to Hub 1)"),
+                Chat.colorize("&7&m----------------------")
+                )
         );
 
         super.getInventory().setItem(15, Item.createItem(
                 Material.QUARTZ_BLOCK,
-                "&b&lHub-2",
+                "&e&lHub-2",
+                Chat.colorize("&7&m----------------------"),
+                Chat.colorize("&7&oJourney to our second waiting station."),
                 "",
-                Chat.colorize("&7(Click to connect to Hub-2)"))
+                Chat.colorize("&7(Click to connect to Hub 2)"),
+                Chat.colorize("&7&m----------------------")
+            )
         );
     }
 

@@ -9,6 +9,7 @@ import xyz.lotho.me.managers.HubPlayer;
 import xyz.lotho.me.utils.Chat;
 import xyz.lotho.me.utils.Item;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -20,8 +21,6 @@ public class ServerSelectMenu extends Menu {
         super("Server Selector", 27);
 
         this.instance = instance;
-
-        setItems();
     }
 
     @Override
@@ -31,15 +30,33 @@ public class ServerSelectMenu extends Menu {
         super.getInventory().setItem(11, Item.createItem(
                 Material.GRASS,
                 "&6&lOrbit",
+                Chat.colorize("&7&m----------------------"),
+                Chat.colorize("&7&oAdventure into orbit, our space-themed Skyblock"),
+                Chat.colorize("&7&oserver, filled with unique and exciting"),
+                Chat.colorize("&7features for you to enjoy!"),
                 "",
-                Chat.colorize("&7(Click to connect to Orbit)"))
+                Chat.colorize("&6Playing: &f" + this.instance.hubManager.serverCounts.getOrDefault("orbit-1", 0)),
+                Chat.colorize("&aQueue: &f" + this.instance.queueManager.getServersQueue().getOrDefault("orbit-1", new ArrayList<>()).size()),
+                "",
+                Chat.colorize("&7(Click to connect to Orbit Skyblock)"),
+                Chat.colorize("&7&m----------------------")
+            )
         );
 
         super.getInventory().setItem(13, Item.createItem(
                 Material.DIAMOND_PICKAXE,
                 "&d&lAtlas",
+                Chat.colorize("&7&m----------------------"),
+                Chat.colorize("&7&oAdventure into atlas, our space-themed Prison"),
+                Chat.colorize("&7&oserver, filled with unique and exciting"),
+                Chat.colorize("&7features for you to enjoy!"),
                 "",
-                Chat.colorize("&7(Click to connect to Atlas)"))
+                Chat.colorize("&6Playing: &f" + this.instance.hubManager.serverCounts.getOrDefault("atlas-1", 0)),
+                Chat.colorize("&aQueue: &f" + this.instance.queueManager.getServersQueue().getOrDefault("atlas-1", new ArrayList<>()).size()),
+                "",
+                Chat.colorize("&7(Click to connect to Atlas Prison)"),
+                Chat.colorize("&7&m----------------------")
+            )
         );
 
         super.getInventory().setItem(15, Item.createItem(
@@ -48,6 +65,13 @@ public class ServerSelectMenu extends Menu {
                 "",
                 Chat.colorize("&7(Click to connect to Mystery)"))
         );
+    }
+
+    @Override
+    public void open(Player player) {
+        this.setItems();
+
+        player.openInventory(this.inventory);
     }
 
     public void handleClick(Player clicker, ItemStack clickedItem, int slot) {
