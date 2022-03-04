@@ -79,7 +79,7 @@ public class ServerSelectMenu extends Menu {
 
         switch(clickedItem.getType()) {
             case GRASS:
-                if (!this.instance.queueManager.isPlayerInAnyQueue(hubPlayer)) {
+                if (!hubPlayer.isInAnyQueue()) {
                     hubPlayer.joinQueue("orbit-1");
                     hubPlayer.getPlayer().sendMessage(Chat.colorize("&aYou have successfully joined the queue for this realm!\n &7You will be transferred shortly, please be patient."));
                     hubPlayer.setQueueScoreboard();
@@ -89,7 +89,7 @@ public class ServerSelectMenu extends Menu {
                 break;
 
             case DIAMOND_PICKAXE:
-                if (!this.instance.queueManager.isPlayerInAnyQueue(hubPlayer)) {
+                if (!hubPlayer.isInAnyQueue()) {
                     hubPlayer.joinQueue("atlas-1");
                     hubPlayer.getPlayer().sendMessage(Chat.colorize("&aYou have successfully joined the queue for this realm!\n &7You will be transferred shortly, please be patient."));
                     hubPlayer.setQueueScoreboard();

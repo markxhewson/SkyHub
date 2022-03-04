@@ -139,6 +139,10 @@ public class HubPlayer {
         return result;
     }
 
+    public boolean isInAnyQueue() {
+        return this.instance.queueManager.isPlayerInAnyQueue(this);
+    }
+
     public boolean isInQueue(String serverName) {
         return this.instance.queueManager.isPlayerInQueue(serverName, this);
     }

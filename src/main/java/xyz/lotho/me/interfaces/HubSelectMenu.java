@@ -62,7 +62,7 @@ public class HubSelectMenu extends Menu {
         }
 
         if (serverName.contains("hub")) {
-            if (!this.instance.queueManager.isPlayerInQueue(serverName, hubPlayer)) {
+            if (!hubPlayer.isInAnyQueue()) {
                 hubPlayer.joinQueue(serverName);
                 hubPlayer.getPlayer().sendMessage(Chat.colorize("&aYou have successfully joined the queue for this hub!\n &7You will be transferred shortly, please be patient."));
                 hubPlayer.setQueueScoreboard();
