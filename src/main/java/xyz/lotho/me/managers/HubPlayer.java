@@ -153,6 +153,8 @@ public class HubPlayer {
         this.sendConnectMessage();
         this.setScoreboard();
 
+        this.getPlayer().getInventory().setHeldItemSlot(4);
+
         this.getPlayer().setGameMode(GameMode.ADVENTURE);
         this.getPlayer().setWalkSpeed((float) this.instance.config.getDouble("walkSpeed"));
     }
